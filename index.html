@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Business Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <span>Local Business Finder</span>
+      </div>
+      <p class="tagline">Discover businesses near you — powered by OpenStreetMap</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls-card">
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="radius-select">Search Radius</label>
+          <div class="select-wrapper">
+            <select id="radius-select">
+              <option value="1000">1 km</option>
+              <option value="2000">2 km</option>
+              <option value="5000" selected>5 km</option>
+              <option value="10000">10 km</option>
+              <option value="25000">25 km</option>
+            </select>
+            <svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <div class="control-group location-display" id="location-display" style="display:none;">
+          <label>Your Location</label>
+          <span id="coords-text" class="coords-text">—</span>
+        </div>
+        <button id="find-btn" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Find Nearby Companies
+        </button>
+      </div>
+    </section>
+
+    <div id="status-area" class="status-area" style="display:none;">
+      <div id="loading-indicator" class="loading-indicator" style="display:none;">
+        <div class="spinner"></div>
+        <span id="loading-text">Getting your location...</span>
+      </div>
+      <div id="error-box" class="error-box" style="display:none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="error-text"></span>
+      </div>
+    </div>
+
+    <section id="results-section" style="display:none;">
+      <div class="results-header">
+        <div class="filter-tabs" role="tablist">
+          <button class="tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="tab" data-filter="has-website" role="tab" aria-selected="false">Has Website</button>
+          <button class="tab" data-filter="no-website" role="tab" aria-selected="false">
+            No Website
+            <span class="tab-badge prospect-badge" title="Potential web design clients">&#9733;</span>
+          </button>
+        </div>
+        <span id="results-count" class="results-count"></span>
+      </div>
+      <div id="cards-grid" class="cards-grid"></div>
+      <div id="empty-state" class="empty-state" style="display:none;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <p>No businesses found for this filter.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> &mdash; ODbL licence &nbsp;|&nbsp; No API key required</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
